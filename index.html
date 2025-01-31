@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para: Gemma Lopez Orobitg</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="countdown"></div>
+        <div id="mensaje" class="mensaje-final" style="display: none;">T'estimo molt, espero que t'agradi</div>
+        <button id="boton" class="boton-final" style="display: none;">AQUI</button>
+    </div>
+    <script>
+                // Obtener el botón por su ID
+                const boton = document.getElementById("boton");
+
+                // Añadir un evento de clic al botón
+                boton.addEventListener("click", function() {
+                    // Redirigir al usuario a gemma.html cuando se haga clic en el botón
+                    window.location.href = "gemma.html";
+                });
+
+
+        function actualizarCuentaAtras() {
+            const fechaObjetivo = new Date('February 11, 2025 00:00:00').getTime();
+            const ahora = new Date().getTime();
+            const diferencia = fechaObjetivo - ahora;
+
+            // Si la cuenta atrás ha terminado
+            if (diferencia < 0) {
+                document.getElementById("countdown").style.display = "none"; // Oculta la cuenta atrás
+                document.getElementById("mensaje").style.display = "block"; // Muestra el mensaje final
+                document.getElementById("boton").style.display = "block"; // Muestra el botón final
+                return;
+            }
+
+            // Cálculo del tiempo restante
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            // Actualiza el contenido de la cuenta atrás
+            document.getElementById("countdown").innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+        }
+
+        // Actualizar la cuenta atrás cada segundo
+        setInterval(actualizarCuentaAtras, 1000);
+        actualizarCuentaAtras();
+    </script>
+</body>
+</html>
