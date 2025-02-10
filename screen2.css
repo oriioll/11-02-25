@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+.carrusel {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 95vh;
+    margin: 2%;
+}
+.fila {
+    display: flex;
+    width: 200%; /* El doble del ancho para el efecto de repetición */
+    height: 31%; /* Cada fila ocupa un tercio del alto de la pantalla */
+    animation: desplazamiento 15s linear infinite;
+    will-change: transform; /* Mejora la suavidad de la animación */
+}
+.fila:nth-child(even) {
+    animation-direction: reverse;
+}
+.foto {
+    flex: 0 0 20%; /* Cada foto ocupa el 20% del ancho de la fila */
+    height: 100%;
+    padding: 5px;
+}
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+@keyframes desplazamiento {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+img {
+    margin-bottom: 2%; /* Añade un espacio antes de la imagen */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #1E90FF; /* Mayor sombra para la imagen */
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 1;
+    transform: translateY(0);
+}
+

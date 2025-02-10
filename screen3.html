@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento de Boda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #ff0000;
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .documento {
+            background-color: #000;
+            color: #ff0000;
+            border: 5px solid #ff0000;
+            padding: 20px;
+            width: 60%;
+            max-width: 800px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .lorem {
+            margin-bottom: 40px; /* Mayor espacio para separar el texto de la firma */
+            line-height: 1.6;
+            height: 60%; /* Ajustamos la altura para que haya más espacio en la parte inferior */
+        }
+
+        .firma {
+            text-align: center;
+            margin-top: 30px;
+            border-top: 2px solid #ff0000;
+            padding-top: 20px;
+        }
+
+        #firmaCanvas {
+            border: 2px solid #ff0000;
+            width: 90%;
+            height: 120px;
+            background-color: #fff;
+        }
+
+        .firma-buttons {
+            margin-top: 20px;
+        }
+
+        .firma-buttons button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            margin: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15); 
+        }
+
+        .firma-buttons button:hover {
+            background-color: #ff0000;
+            transform: scale(1.05); /* Efecto hover para el botón */
+        }
+
+        :root {
+    --primary-color: #1E90FF; /* Naranja similar al logo de Pornhub */
+    --secondary-color: #1E90FF; /* Naranja más claro para el hover */
+    --text-color: #f5f5f5; /* Color del texto en blanco */
+    --background-color: #000000; /* Fondo negro */
+    --border-radius: 15px;
+    --transition-speed: 0.3s;
+}
+    </style>
+</head>
+<body>
+    <div class="documento">
+        <h1>Documento de Junte de Sangre</h1>
+        <div class="lorem">
+            <p>En este acto solemne, realizamos el Junte de Sangre, un símbolo de unión profunda, más allá de las fronteras de la amistad, un lazo forjado por la conexión más pura y sincera que puede existir. Al igual que dos corrientes de agua que se fusionan en un río, nuestras almas se entrelazan para siempre, dejando atrás cualquier barrera que nos separe.</p>
+            <p>Hoy, ante nuestros ojos y corazones, sellamos esta promesa de unión eterna, de apoyo mutuo en los momentos de oscuridad y luz, de amor y esperanza, de compañerismo sin fin. Así, bajo este juramento de sangre, nos comprometemos a caminar juntos por la vida, compartiendo alegrías, desafíos, y todo lo que nos depare el destino.</p>
+        </div>
+
+        <div class="firma">
+            <p><strong>Firma aquí:</strong></p>
+            <canvas id="firmaCanvas"></canvas>
+            <div class="firma-buttons">
+                <button id="clearBtn">Limpiar</button>
+                <button id="saveBtn">NEXT</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('firmaCanvas');
+        const ctx = canvas.getContext('2d');
+        const clearBtn = document.getElementById('clearBtn');
+        const saveBtn = document.getElementById('saveBtn');
+
+        // Configuración inicial del canvas
+        canvas.width = 600;
+        canvas.height = 150;
+
+        let painting = false;
+
+        // Función para empezar a dibujar
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        // Función para dejar de dibujar
+        function endPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+
+        // Función para dibujar
+        function draw(e) {
+            if (!painting) return;
+            // Obtenemos las coordenadas exactas dentro del canvas
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left; // Calculamos la posición x
+            const y = e.clientY - rect.top;  // Calculamos la posición y
+
+            ctx.lineWidth = 5;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#ff0000';
+
+            ctx.lineTo(x, y); // Dibujamos en el canvas
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y); // Movemos el punto de partida de la siguiente línea
+        }
+
+        // Limpiar el canvas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+              // Obtener el botón por su ID
+      const gemita = document.getElementById("saveBtn");
+
+        // Añadir un evento de clic al botón
+        gemita.addEventListener("click", function () {
+        // Redirigir al usuario a gemma.html cuando se haga clic en el botón
+        window.location.href = "screen4.html";
+        });
+
+        // Eventos para el canvas
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+
+        // Eventos para los botones
+        clearBtn.addEventListener('click', clearCanvas);
+        saveBtn.addEventListener('click', saveSignature);
+    </script>
+</body>
+</html>

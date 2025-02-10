@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 30%;
+            background-color: rgba(30, 30, 30, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #1E90FF;
+        }
+        input {
+            width: 90%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .boton-final {
+            background-color: #1E90FF;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+            margin-top: 5%;
+        }
+        .boton-final:hover {
+            background-color: #1E90FF;
+            transform: scale(1.05);
+        }
+        #errorMensaje {
+            color: red;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit" class="boton-final">Iniciar Sesión</button>
+        </form>
+        <div id="errorMensaje">Usuario o contraseña incorrectos</div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === "its.gemmx" && password === "urisito") {
+                window.location.href = "gemma.html"; // Redirige a gemma.html
+            }  else if (username === "admin" && password === "admin") {
+                window.location.href = "gemma.html"; // Redirige a gemma.html
+            } else {
+                document.getElementById("errorMensaje").style.display = "block"; // Muestra mensaje de error
+            }
+        });
+    </script>
+</body>
+</html>
